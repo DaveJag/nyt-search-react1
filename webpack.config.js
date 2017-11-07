@@ -8,10 +8,9 @@ module.exports = {
     filename: "public/bundle.js"
   },
 
-  // This section desribes the transformations we will perform
+  // This section describes the transformations we will perform
   module: {
-    loaders: [
-      {
+    loaders: [{
         // Only working with files that in in a .js or .jsx extension
         test: /\.jsx?$/,
         // Webpack will only process files in our app folder. This avoids processing
@@ -20,12 +19,11 @@ module.exports = {
         loader: "babel",
         query: {
           // These are the specific transformations we'll be using.
-          presets: ["react", "es2015"]
+          presets: ["es2015", "react"]
         }
       }
     ]
   },
-  // This lets us debug our react code in chrome dev tools. Errors will have lines and file names
-  // Without this the console says all errors are coming from just coming from bundle.js
+  // Allow debuggin our react code in chrome dev tools. 
   devtool: "eval-source-map"
 };

@@ -10,10 +10,10 @@ var logger = require("morgan");
 var app = express();
 var port = process.env.PORT || 3000;
 
-//Require the Article model
+//Require the Article model.
 var Article = require("./models/Article.js");
 
-// Run Morgan for Logging
+// Use morgan and body-parser for logging.
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-// MongoDB Configuration configuration (Change this URL to your own DB)
+// Database configuration with Mongoose.
 mongoose.connect("mongodb://localhost/nytreact");
 
 var db = mongoose.connection;
@@ -33,32 +33,33 @@ db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
 });
 
+//After logging into the db through mongoose, log a success message.
 db.once("open", function() {                          
   console.log("Mongoose connection successful.");
 });
 
-// -------------------------------------------------
+// --------------------------------------------------
+// Routes
 
-// Main "/" Route. This will redirect the user to our rendered React application
+// Configure Main "/" route to redirect  user to the rendered React application.
 app.get("/", function(req, res) {
-  res.sendFile("../public/index.html");
+      res.sendFile("../public/index.html");
 });
 
-// This is the route we will send GET requests to retrieve our most recent search data.
-// We will call this route the moment our page gets rendered
+// Configure routes to retrieve the most recent search result data after page is rendered.
 app.get("/api/saved", function(req, res) {
 
-  // We will find all the records, sort it in descending order, then limit the records to 5
-  Article.find({})
-    .exec(function(err, doc){
+  // We will find all the records, sort it in descending order, then limit the records to 5.
+  //The exec() method executes a search for a match in a specified string. Returns a result array, or null.
+  Article.find({}).exec(function(err, doc) {
 
       if(err){
-        console.log(err);
+        console.log(error);
       }
       else {
         res.send(doc);
       }
-    })
+    });
 });
 
 // This is the route we will send POST requests to save each search.
@@ -90,8 +91,8 @@ app.delete('/api/saved/:id', function(req, res){
 });
 
 
-// Start the server to begin listening
-// =============================================================
+// Start the server on port specified above.
+// ==============================================
 app.listen(port, function() {
   console.log("App is listening on port " + port);
 });

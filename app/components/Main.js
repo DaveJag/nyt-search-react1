@@ -26,7 +26,6 @@ var Main = React.createClass({
 	    }
   },
 
-  // Here we set a generic state associated with the number of clicks
   getInitialState: function(){
     return {
       topic: "",
@@ -37,7 +36,7 @@ var Main = React.createClass({
     }
   },  
 
-  // We use this function to allow children to update the parent with searchTerms.
+  // Allow children to update the parent with searchTerms.
   setTerm: function(tpc, stYr, endYr){
     this.setState({
       topic: tpc,
@@ -73,7 +72,7 @@ var Main = React.createClass({
       }.bind(this));
   },
 
-  // If the component updates we'll run this code
+  // Update components 
   componentDidUpdate: function(prevProps, prevState){
 
     if(prevState.topic != this.state.topic){
@@ -101,7 +100,7 @@ var Main = React.createClass({
       }.bind(this));
   },
 
-  // Here we render the function
+  // Render the function
   render: function(){
     return(
 
@@ -109,8 +108,8 @@ var Main = React.createClass({
 
         <div className="row">
 
-          <div className="jumbotron" style={{'backgroundImage': 'url(../images/newspaper.png)', 'backgroundRepeat': 'no-repeat', 'backgroundPosition': 'center', 'backgroundSize': '100% 100%', 'backgroundAttachment': 'fixed'}}>
-            <h2 className="text-center" style={{'color': 'white', 'textShadow': '3px 3px 10px black', 'fontSize': '54px'}}>New York Times Article Search and Save</h2>
+          <div className="jumbotron" style={{'backgroundImage': 'url(../images/nyt-headline.png)', 'backgroundRepeat': 'no-repeat', 'backgroundPosition': 'center', 'backgroundSize': '50% 50%', 'backgroundAttachment': 'fixed'}}>
+            <h2 className="text-center" style={{'color': 'black', 'textShadow': '3px 3px 10px gray', 'fontSize': '48px'}}>New York Times Article Search and Save</h2>
             <p className="text-center" style={{'color': 'white', 'textShadow': '3px 3px 10px black', 'fontSize': '24px'}}>Search for and save articles of interest!</p>
           </div>
         </div>
