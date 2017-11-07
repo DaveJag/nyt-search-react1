@@ -10,6 +10,8 @@ var logger = require("morgan");
 var app = express();
 var port = process.env.PORT || 3000;
 
+//Require the Article model
+var Article = require("./models/Article.js");
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -31,7 +33,7 @@ db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
 });
 
-db.once("open", function() {
+db.once("open", function() {                          
   console.log("Mongoose connection successful.");
 });
 

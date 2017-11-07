@@ -10,7 +10,7 @@
 	var ArticleSchema = new Schema({
   
 	// title is a string containing the title of the stored article from NYTimes.com. 
-	// We will trim any trailing whitespace and make all data objects required.
+	// Trim any trailing whitespace and make all data objects required.
 		title: {
 	    	type: String,
 	    	trim: true,
